@@ -89,6 +89,12 @@ fun NavGraphBuilder.cancelBookingDestination(navController: NavController) {
             onBackClick = navController::navigateUp,
             onRescheduleClick = { id ->
                 navController.navigateToRescheduleBookingScreen(id)
+            },
+            onNavigateToBookings = { successMessage ->
+                navController.popBackStack<HomeRoute>(inclusive = false)
+                navController.navigate(BookingsRoute(successMessage)) {
+                    popUpTo<HomeRoute> { inclusive = false }
+                }
             }
         )
     }
@@ -99,7 +105,13 @@ fun NavGraphBuilder.rescheduleBookingDestination(navController: NavController) {
         val route = backStackEntry.toRoute<RescheduleBookingRoute>()
         RescheduleBookingScreen(
             bookingId = route.bookingId,
-            onBackClick = navController::navigateUp
+            onBackClick = navController::navigateUp,
+            onNavigateToBookings = { successMessage ->
+                navController.popBackStack<HomeRoute>(inclusive = false)
+                navController.navigate(BookingsRoute(successMessage)) {
+                    popUpTo<HomeRoute> { inclusive = false }
+                }
+            }
         )
     }
 }

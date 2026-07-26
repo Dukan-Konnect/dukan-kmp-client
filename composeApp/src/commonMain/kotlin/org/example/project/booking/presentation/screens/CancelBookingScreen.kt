@@ -31,6 +31,7 @@ fun CancelBookingScreen(
     viewModel: BookingsViewModel = koinViewModel(),
     onBackClick: () -> Unit = {},
     onRescheduleClick: (String) -> Unit = {},
+    onNavigateToBookings: (String?) -> Unit = {},
     modifier: Modifier = Modifier
 ) {
     val state by viewModel.state.collectAsState()
@@ -42,6 +43,7 @@ fun CancelBookingScreen(
         viewModel.effect.collect { effect ->
             when (effect) {
                 BookingsEffect.NavigateBack -> onBackClick()
+                is BookingsEffect.NavigateToBookings -> onNavigateToBookings(effect.successMessage)
                 is BookingsEffect.ShowToast -> {
                     launch {
                         snackbarHostState.showSnackbar(message = effect.message)

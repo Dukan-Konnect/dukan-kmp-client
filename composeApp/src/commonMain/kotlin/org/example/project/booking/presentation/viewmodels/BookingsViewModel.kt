@@ -38,6 +38,7 @@ sealed interface BookingsIntent {
 
 sealed interface BookingsEffect {
     data object NavigateBack : BookingsEffect
+    data class NavigateToBookings(val successMessage: String? = null) : BookingsEffect
     data class ShowToast(val message: String) : BookingsEffect
 }
 
@@ -80,18 +81,21 @@ class BookingsViewModel(
                 .catch { error ->
                     _state.update {
                         it.copy(
-                            isLoading = false,
                             errorMessage = error.message.orGenericError()
                         )
                     }
                 }
                 .collect { bookings ->
-                    _state.update { it.copy(bookings = bookings, isLoading = false, errorMessage = null) }
+                    _state.update { it.copy(bookings = bookings, errorMessage = null) }
                 }
         }
     }
 
+    private var hasFetched = false
+
     private fun refreshFromBackend() {
+        if (hasFetched) return
+        hasFetched = true
         viewModelScope.launch {
             _state.update { it.copy(isLoading = true, errorMessage = null) }
             when (val remoteState = bookingRemoteRepository.getMyBookings()) {
@@ -123,7 +127,7 @@ class BookingsViewModel(
                 is DataState.Success -> {
                     bookingRepository.createBooking(response.data)
                     _state.update { it.copy(isLoading = false) }
-                    _effect.emit(BookingsEffect.NavigateBack)
+                    _effect.emit(BookingsEffect.NavigateToBookings("Booking cancelled successfully"))
                 }
                 is DataState.Error -> {
                     _state.update { it.copy(isLoading = false) }
@@ -141,7 +145,7 @@ class BookingsViewModel(
                 is DataState.Success -> {
                     bookingRepository.createBooking(response.data)
                     _state.update { it.copy(isLoading = false) }
-                    _effect.emit(BookingsEffect.NavigateBack)
+                    _effect.emit(BookingsEffect.NavigateToBookings("Booking rescheduled successfully"))
                 }
                 is DataState.Error -> {
                     _state.update { it.copy(isLoading = false) }

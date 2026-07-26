@@ -25,15 +25,18 @@ fun AppNavGraph(
         modifier = Modifier.fillMaxSize(),
         bottomBar = {
             if (shouldShowBottomBar(currentRoute)) {
+                val currentRouteObj = getCurrentRouteObject(currentRoute)
                 BottomBar(
-                    currentRoute = getCurrentRouteObject(currentRoute),
+                    currentRoute = currentRouteObj,
                     onNavigate = { route ->
-                        navController.navigate(route) {
-                            popUpTo(navController.graph.findStartDestination().id) {
-                                saveState = true
+                        if (route != currentRouteObj) {
+                            navController.navigate(route) {
+                                popUpTo(navController.graph.findStartDestination().id) {
+                                    saveState = true
+                                }
+                                launchSingleTop = true
+                                restoreState = true
                             }
-                            launchSingleTop = true
-                            restoreState = true
                         }
                     }
                 )

@@ -22,7 +22,6 @@ import androidx.compose.ui.window.Dialog
 
 @Composable
 fun BookingDialog(
-    emoji: String,
     title: String,
     subtitle: String,
     negativeText: String,
@@ -48,13 +47,6 @@ fun BookingDialog(
                     .padding(24.dp),
                 horizontalAlignment = Alignment.CenterHorizontally
             ) {
-                // Emoji
-                Text(
-                    text = emoji,
-                    style = MaterialTheme.typography.displayLarge,
-                    modifier = Modifier.padding(bottom = 16.dp)
-                )
-
                 // Message Title
                 Text(
                     text = title,
@@ -120,7 +112,6 @@ fun CancelAnywayDialog(
     modifier: Modifier = Modifier
 ) {
     BookingDialog(
-        emoji = "😟",
         title = "Are you sure about cancelling this booking ?",
         subtitle = "You can always reschedule it.",
         negativeText = "Cancel anyway",
@@ -140,7 +131,6 @@ fun RescheduleConfirmDialog(
     modifier: Modifier = Modifier
 ) {
     BookingDialog(
-        emoji = "📅",
         title = "Are you sure about rescheduling this booking ?",
         subtitle = "Your previous slot will be released.",
         negativeText = "Cancel",

@@ -12,7 +12,7 @@ The application's backend is powered by a **Spring Boot** server, while leveragi
 
 | Android | iOS |
 | :---: | :---: |
-| <video src="https://github.com/user-attachments/assets/a84f27f4-470d-4d22-8035-c443c2ac8a10" controls height="200"></video> | <video src="https://github.com/user-attachments/assets/0ab30219-6334-434e-9664-4668659aacb7" controls height="200"></video> |
+| <video src="https://github.com/user-attachments/assets/c9a35b3d-13f5-4a5f-a9bb-7fce793d0f82" controls height="200"></video> | <video src="https://github.com/user-attachments/assets/134302f2-64a3-4ed6-90ab-a1baa1a01c2a" controls height="200"></video> |
 
 ---
 

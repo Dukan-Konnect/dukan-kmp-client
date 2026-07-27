@@ -4,7 +4,7 @@ DukanKonnect is a comprehensive service booking application designed to seamless
 
 Built with **Compose Multiplatform (CMP)**, this project serves as a technical showcase of cross-platform mobile development for Android and iOS sharing a unified Kotlin codebase and 100% shared UI.
 
-The application's backend is powered by a **Spring Boot** server, while leveraging **Supabase** for database management, secure authentication, and cloud storage.
+The application's backend is powered by a **Spring Boot** server, while leveraging **Supabase** for database management and cloud storage.
 
 ---
 

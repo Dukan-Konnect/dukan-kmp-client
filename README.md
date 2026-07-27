@@ -51,7 +51,7 @@ Real-time updates are critical for managing service bookings.
 For interactive location selection and viewing service providers on a map, **MapLibre** is integrated into the shared UI.
 - **Why MapLibre?** MapLibre was chosen over proprietary SDKs (like Google Maps) for its excellent cross-platform support, performant vector tile rendering, and open-source nature. It bypasses the heavy licensing and integration complexities often associated with embedding platform-specific map views in a Compose Multiplatform context, providing a unified and customizable map experience on both Android and iOS.
 
-### Robust Error Handling
+### Error Handling
 Network flakiness and unexpected API responses are managed gracefully across the app. The architecture utilizes sealed classes (`Result` wrappers) to strictly model `Success`, `Loading`, and various `Error` states. This guarantees that network timeouts, authentication failures, or empty states are caught and presented to the user with helpful, actionable UI prompts, completely avoiding generic crashes.
 
 ---
